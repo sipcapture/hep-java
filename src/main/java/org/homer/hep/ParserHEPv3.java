@@ -33,6 +33,9 @@ import java.util.zip.Inflater;
 
 public class ParserHEPv3 {
 	
+	public static final int WIDTH = 4;
+	public static final int WIDTH_V6 = 128; // in bits
+	
 	public ParserHEPv3(ByteBuffer msg, int totalLength, String remoteIPAddress) throws Exception {
 
 		try {
@@ -79,12 +82,12 @@ public class ParserHEPv3 {
 
 				case 3:
 					int src_ip4 = msg.getInt();
-					hepStruct.sourceIPAddress = ArrayHelper.IPtoString(src_ip4);					
+					hepStruct.sourceIPAddress = IPtoString(src_ip4);					
 					break;
 
 				case 4:
 					int dst_ip4 = msg.getInt();
-					hepStruct.destinationIPAddress = ArrayHelper.IPtoString(dst_ip4);
+					hepStruct.destinationIPAddress = IPtoString(dst_ip4);
 					break;
 
 				case 7:
@@ -174,6 +177,16 @@ public class ParserHEPv3 {
         byte[] output = baos.toByteArray(); 
         return output;
     }
-    
-	
+
+    public static String IPtoString(int address) {
+             StringBuffer sa = new StringBuffer();
+             for (int i = 0; i < WIDTH; i++) {
+                 sa.append(0xff & address >> 24);
+                 address <<= 8;
+                 if (i != WIDTH - 1)
+                   sa.append(".");
+             }
+             return sa.toString();
+    }
+
 }
