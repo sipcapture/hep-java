@@ -32,7 +32,10 @@ import java.util.zip.DataFormatException;
 import java.util.zip.Inflater;
 
 public class ParserHEPv3 {
-	
+
+  	public static final int WIDTH = 4;
+	public static final int WIDTH_V6 = 128; // in bits
+
 	public ParserHEPv3(ByteBuffer msg, int totalLength, String remoteIPAddress) throws Exception {
 
 		try {
