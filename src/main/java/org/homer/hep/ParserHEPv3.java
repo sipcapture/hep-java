@@ -32,10 +32,10 @@ import java.util.zip.DataFormatException;
 import java.util.zip.Inflater;
 
 public class ParserHEPv3 {
-	
-	public static final int WIDTH = 4;
+
+  	public static final int WIDTH = 4;
 	public static final int WIDTH_V6 = 128; // in bits
-	
+
 	public ParserHEPv3(ByteBuffer msg, int totalLength, String remoteIPAddress) throws Exception {
 
 		try {
@@ -177,16 +177,15 @@ public class ParserHEPv3 {
         byte[] output = baos.toByteArray(); 
         return output;
     }
-
-    public static String IPtoString(int address) {
-             StringBuffer sa = new StringBuffer();
-             for (int i = 0; i < WIDTH; i++) {
-                 sa.append(0xff & address >> 24);
-                 address <<= 8;
-                 if (i != WIDTH - 1)
-                   sa.append(".");
-             }
-             return sa.toString();
-    }
-
+    
+     public static String IPtoString(int address) {
+            StringBuffer sa = new StringBuffer();
+            for (int i = 0; i < WIDTH; i++) {
+              sa.append(0xff & address >> 24);
+              address <<= 8;
+              if (i != WIDTH - 1)
+                sa.append(".");
+            }
+            return sa.toString();
+  }
 }
