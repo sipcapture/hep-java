@@ -188,6 +188,4 @@ public class ParserHEPv3 {
             }
             return sa.toString();
   }
-
-	
 }
