@@ -36,6 +36,15 @@ public class ParserHEPv3 {
   	public static final int WIDTH = 4;
 	public static final int WIDTH_V6 = 128; // in bits
 
+    /**
+     * Method to parse out HEPStructure from input byte buffer.
+     *
+     * @param msg             payload bytes
+     * @param totalLength     length of payload
+     * @param remoteIPAddress IP address of remote host
+     * @return HEPStructure instance
+     * @throws Exception
+     */
 	public HEPStructure parse(ByteBuffer msg, int totalLength, String remoteIPAddress) throws Exception {
 
         HEPStructure hepStruct = new HEPStructure();
