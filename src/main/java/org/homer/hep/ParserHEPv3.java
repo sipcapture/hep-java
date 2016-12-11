@@ -36,8 +36,9 @@ public class ParserHEPv3 {
   	public static final int WIDTH = 4;
 	public static final int WIDTH_V6 = 128; // in bits
 
-	public ParserHEPv3(ByteBuffer msg, int totalLength, String remoteIPAddress) throws Exception {
+	public HEPStructure parse(ByteBuffer msg, int totalLength, String remoteIPAddress) throws Exception {
 
+        HEPStructure hepStruct = new HEPStructure();
 		try {
 
 			int chunk_id = 0;
@@ -45,7 +46,7 @@ public class ParserHEPv3 {
 			int chunk_length = 0;
 			int i = 6;			
 
-			HEPStructure hepStruct = new HEPStructure();
+
 			/* recieved time */
 			hepStruct.recievedTimestamp = hepStruct.timeSeconds * 1000000 + hepStruct.timeUseconds;			            
 
@@ -56,12 +57,12 @@ public class ParserHEPv3 {
 				
 				if(chunk_length > totalLength) {
 					System.out.println("Corrupted HEP: CHUNK LENGHT couldnt be bigger as CHUNK_LENGHT");
-					return;
+                    throw new IOException("Invalid HEP payload.");
 				}
 				
 				if(chunk_length == 0) {
 					System.out.println("Corrupted HEP: LENGTH couldn't be 0!");
-					return;
+                    throw new IOException("Invalid HEP payload.");
 				}
 
 				/* working with based HEP */
@@ -157,6 +158,7 @@ public class ParserHEPv3 {
 			e.printStackTrace();
 			System.out.println("Unable RUN WORKER");
 		}
+		return hepStruct;
     }	
 	
     public static byte[] extractBytes(byte[] input, int position, int len) throws UnsupportedEncodingException, IOException, DataFormatException
