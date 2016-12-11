@@ -158,14 +158,10 @@ public class ParserHEPv3 {
 				i += chunk_length;
 								
 			}
-			
-			
-			hepStruct = null;
-
-
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("Unable RUN WORKER");
+			throw e;
 		}
 		return hepStruct;
     }	
