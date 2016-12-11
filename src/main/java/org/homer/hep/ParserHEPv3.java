@@ -56,7 +56,7 @@ public class ParserHEPv3 {
 			int i = 6;			
 
 
-			/* recieved time */
+			/* received time */
 			hepStruct.recievedTimestamp = hepStruct.timeSeconds * 1000000 + hepStruct.timeUseconds;			            
 
 			while (i < totalLength) {
