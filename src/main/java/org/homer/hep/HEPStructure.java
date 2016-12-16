@@ -44,5 +44,30 @@ public class HEPStructure {
 	public boolean authorized = false;	
 	public ByteBuffer payloadByteMessage = null;	
 	public long recievedTimestamp;
-	public String node;	
+	public String node;
+
+	@Override
+    public String toString(){
+	    StringBuilder sb = new StringBuilder();
+	    sb.append("HEPStructure[")
+                .append("ipFamily: " + ipFamily)
+                .append(", protcolId: " + protocolId)
+                .append(", sourcePort: " + sourcePort)
+                .append(", destinationPort: " + destinationPort)
+                .append(", timeSeconds: " + timeSeconds)
+                .append(", timeUseconds: " + timeUseconds)
+                .append(", protocolType: " + protocolType)
+                .append(", captureId: " + captureId)
+                .append(", hepCorrelationID: " + hepCorrelationID)
+                .append(", captureAuthUser: " + captureAuthUser)
+                .append(", sourceIPAddress: " + sourceIPAddress)
+                .append(", destinationIPAddress: " + destinationIPAddress)
+                .append(", uuid: " + uuid)
+                .append(", authorized: " + authorized)
+                .append(", payloadByteMessage: " + payloadByteMessage)
+                .append(", recievedTimestamp: " + recievedTimestamp)
+                .append(", node: " + node)
+                .append("]");
+	    return sb.toString();
+    }
 }
