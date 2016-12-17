@@ -14,6 +14,48 @@ HEP/EEP is currently supported natively in platforms such as Kamailio/SER, OpenS
 mvn package
 </pre>
 
+## Usage Example
+<pre>
+//...
+import org.homer.hep.ParserHEPv3;
+import org.homer.hep.HEPStructure;
+//...
+
+void consume(Socket socket) {
+    // hep input stream      
+    InputStream in = socket.getInputStream();
+    
+    // get header bytes
+    byte[] header = new byte[4];
+    byte[] expectedHeader = {0x48, 0x45, 0x50, 0x33};
+    in.read(header);
+
+    // check if header spells "HEP3"
+    if (Arrays.equals(header, expectedHeader)){
+        
+        // get the total length bytes
+        byte[] lenBytes = new byte[2]; 
+        in.read(lenBytes);
+        int len = ((lenBytes[0]<<8)+ lenBytes[1]);
+        // get payload bytes
+        byte[] bytes = new byte[len];
+        in.read(bytes);
+
+        // parse out HEP structure
+        ParserHEPv3 parser = new ParserHEPv3();
+        HEPStructure hepStructure = parser.parse(ByteBuffer.wrap(bytes), len, socket.getInetAddress().toString());
+        // this prints out the HEP structure string representation
+        System.out.println("HEP Structure: " + hepStructure);
+
+        // grab payload from HEP structure
+        String payload = new String(hepStructure.payloadByteMessage.array());
+        //...
+        //... do stuff with payload
+        //...
+    }
+}
+
+</pre>
 
 ### Support
 For any question or comment, please visit http://sipcapture.org or contact support@sipcapture.org
