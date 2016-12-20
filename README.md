@@ -23,8 +23,8 @@ import org.homer.hep.HEPStructure;
 
 void consume(Socket socket) {
     // hep input stream      
-    InputStream in = socket.getInputStream();
-    
+    DataInputStream in = new DataInputStream(socket.getInputStream());
+
     // get header bytes
     byte[] header = new byte[4];
     byte[] expectedHeader = {0x48, 0x45, 0x50, 0x33};
@@ -32,11 +32,10 @@ void consume(Socket socket) {
 
     // check if header spells "HEP3"
     if (Arrays.equals(header, expectedHeader)){
+
+        // get the payload length
+        int len = in.readUnsignedShort();
         
-        // get the total length bytes
-        byte[] lenBytes = new byte[2]; 
-        in.read(lenBytes);
-        int len = ((lenBytes[0]<<8)+ lenBytes[1]);
         // get payload bytes
         byte[] bytes = new byte[len];
         in.read(bytes);
