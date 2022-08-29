@@ -1,11 +1,13 @@
+<img src="https://user-images.githubusercontent.com/1423657/55069501-8348c400-5084-11e9-9931-fefe0f9874a7.png" width=200/>
+
 # HEP-JAVA
 ### HEP/EEP Encapsulation Protocol Library for Java
 
-This repository provides an example HEP3 library and reference decoder implementation for Developers and Integrators.
+This repository provides an example [HEP3](http://hep.sipcapture.org/) library and reference decoder implementation for Developers and Integrators.
 
 
 #### About HEP/EEP
-EEP/HEP: Extensible Encapsulation protocol (“EEP” pronounced “HEPPY”) provides a method to duplicate an IP datagram to a collector by encapsulating the original datagram and its relative header properties (as payload, in form of concatenated chunks) within a new IP datagram transmitted over UDP/TCP/SCTP connections for remote collection. Encapsulation allows for the original content to be transmitted without altering the original IP datagram and header contents and provides flexible allocation of additional chunks containing additional arbitrary data.
+EEP/HEP: Extensible Encapsulation protocol provides a method to duplicate an IP datagram to a collector by encapsulating the original datagram and its relative header properties (as payload, in form of concatenated chunks) within a new IP datagram transmitted over UDP/TCP/SCTP connections for remote collection. Encapsulation allows for the original content to be transmitted without altering the original IP datagram and header contents and provides flexible allocation of additional chunks containing additional arbitrary data.
 
 HEP/EEP is currently supported natively in platforms such as Kamailio/SER, OpenSIPS, FreeSWITCH, Asterisk and tools such as Captagent, sipgrep, sngrep and more.
 
